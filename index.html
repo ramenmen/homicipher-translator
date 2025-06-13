@@ -2,8 +2,8 @@
 <script>
   const english = ["Me","My","This (thing)","What","Be/Exist","You","Your","This (place)","Why","Is there","Them","Their","May/can","Where","Is not there","Us","Another","Cannot","Not","Elsewhere","Hello","I see","Whats wrong","Before","Should","Goodbye","I gotcha","Goodnight","Again","Want to","Thank you","Okie dokie","There (pat)","Maybe","Want (you) to","Sorry","Disappointed","Together","Able to","Lets (invitation)","Do(ing)","Go","Wait","Return","Appear","Stand","Come","Lost","Give","Carry","Research","Teach","Leave","Enter","Sleep/Rest","Drop","Cutting","Touch","Take care of","Worry","Dead","Human(?)","Language","Method/How","Body","Eye","Move","Follow","Pass","Change","Disappear","Play","Stain","Take/Get","Want","Watch/See","Choose","Return/Normal","Meet","Break","Awake","Shake","Attack/Fight","Run","Fix","Hair","Mouth","Locals","(Under)World","Problem","Head","Ear","Time","Intelligence","Say","Someone (else)","Name","Sound","Shape","Face","Hand","Sit","Take/Bring","Stop","Leave","Hide","Put down","Use","Look for/Search","Know/Learn","Eat","Cover","Open","Knock/Hit","Help","Kill","Pick up","Need","Find","Understand"];
   const otherian = ["DHF","DHFG","RKB","FLW","GBRN","YBU","YBUG","CWI","XIM","HZIY","RNU","XUEI","EACZ","YZG","SNQW","DSH","ZYIJ","JYLL","UUTH","QSNG","THGYS","ZYNAG","AEVDB","YUHA","XRFW","UNCQZ","OTRFV","PETKU","DOIR","MAYU","BMFJO","QSWCK","HKCDK","IWUS","YASQ","ELGXP","FNAMK","HVBF","KCJN","ZZTS","MBDO","FTYA","QYUC","NSXH","TEIW","EIUE","PZHC","KXEL","WHIN","UIWC","AONI","EHQX","PKYH","FJSB","IVXZ","YASM","PFJA","AEJY","HTQV","MMYN","TIYQ","PLZK","EYVF","WCXI","LFKN","TXAU","NCPV","GUWR","OYFE","BENA","HRON","EKWI","CVKU","OBWJ","KRYO","IRZD","NGRA","FTEB","EFUA","TAYF","AZLT","FTRY","MXRP","AMYU","KBUD","NJYZ","SHEG","NMGI","BQAZ","KDYH","DHBZ","OAIX","TROW","EIQJ","CUPV","NMGK","HJUS","PLXI","IVGW","CYQM","RFWD","HJKL","LGSU","HMWI","XVJP","ACTB","QGXN","FTHY","IRFY","DZMG","DCUT","NRVI","GOLB","ICLS","OGNW","HAUI","SMDW","XZHA","JSCK","TWBL"];
-  document.getElementById("eng").innerHTML = english[0];
-  document.getElementById("oth").innerHTML = otherian[0];
+  document.getElementById("eng").value = english[0];
+  document.getElementById("oth").value = otherian[0];
   class Otherian extends HTMLParagraphElement {
   constructor() {
     super();
@@ -17,7 +17,7 @@
   <style>
     @font-face {
       font-family: Homicipher;
-      src: url("../homicipher-translator/Homicipher Monster.ttf") format('truetype');
+      src: url("../../homicipher-translator/Homicipher Monster.ttf") format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -26,7 +26,7 @@
       }
   </style>
 <body>
-  <h1>Homicipher Translator</h1>
+  <h1>Translator</h1>
   <p id="eng">test</p>
   <oth id="oth">test</oth>
   
