@@ -4,15 +4,30 @@
   const otherian = ["DHF","DHFG","RKB","FLW","GBRN","YBU","YBUG","CWI","XIM","HZIY","RNU","XUEI","EACZ","YZG","SNQW","DSH","ZYIJ","JYLL","UUTH","QSNG","THGYS","ZYNAG","AEVDB","YUHA","XRFW","UNCQZ","OTRFV","PETKU","DOIR","MAYU","BMFJO","QSWCK","HKCDK","IWUS","YASQ","ELGXP","FNAMK","HVBF","KCJN","ZZTS","MBDO","FTYA","QYUC","NSXH","TEIW","EIUE","PZHC","KXEL","WHIN","UIWC","AONI","EHQX","PKYH","FJSB","IVXZ","YASM","PFJA","AEJY","HTQV","MMYN","TIYQ","PLZK","EYVF","WCXI","LFKN","TXAU","NCPV","GUWR","OYFE","BENA","HRON","EKWI","CVKU","OBWJ","KRYO","IRZD","NGRA","FTEB","EFUA","TAYF","AZLT","FTRY","MXRP","AMYU","KBUD","NJYZ","SHEG","NMGI","BQAZ","KDYH","DHBZ","OAIX","TROW","EIQJ","CUPV","NMGK","HJUS","PLXI","IVGW","CYQM","RFWD","HJKL","LGSU","HMWI","XVJP","ACTB","QGXN","FTHY","IRFY","DZMG","DCUT","NRVI","GOLB","ICLS","OGNW","HAUI","SMDW","XZHA","JSCK","TWBL"];
   document.getElementById("eng").value = english[0];
   document.getElementById("oth").value = otherian[0];
+  
   class Otherian extends HTMLParagraphElement {
-  constructor() {
-    super();
-  }
+    constructor() {
+      super();
+    }
   // Element functionality written in here
-}
+  }
   customElements.define("oth", Otherian, { extends: "p" });
 
+  const eng = document.createElement("p");
+  const node = document.createTextNode(english[0]);
+  eng.appendChild(node);
 
+  const oth = document.createElement("oth");
+  const node = document.createTextNode(otherian[0]);
+  oth.appendChild(node);
+
+  const tr = document.createElement("tr");
+  tr.appendChild(eng);
+  tr.appendChild(oth);
+
+  const element = document.getElementById("results");
+  element.appendChild(tr);
+  
 </script>
   <style>
     @font-face {
@@ -21,15 +36,16 @@
       font-weight: normal;
       font-style: normal;
     }
-    h1 {
+    oth {
          font-family: Homicipher
       }
   </style>
 <body>
   <h1>Translator</h1>
-  <p id="eng">test</p>
-  <oth id="oth">test</oth>
   
+  <table id="results">
+    
+  </table>
 </body>
 
 </html>
