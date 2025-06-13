@@ -1,51 +1,123 @@
 <html>
-<script>
-  const english = ["Me","My","This (thing)","What","Be/Exist","You","Your","This (place)","Why","Is there","Them","Their","May/can","Where","Is not there","Us","Another","Cannot","Not","Elsewhere","Hello","I see","Whats wrong","Before","Should","Goodbye","I gotcha","Goodnight","Again","Want to","Thank you","Okie dokie","There (pat)","Maybe","Want (you) to","Sorry","Disappointed","Together","Able to","Lets (invitation)","Do(ing)","Go","Wait","Return","Appear","Stand","Come","Lost","Give","Carry","Research","Teach","Leave","Enter","Sleep/Rest","Drop","Cutting","Touch","Take care of","Worry","Dead","Human(?)","Language","Method/How","Body","Eye","Move","Follow","Pass","Change","Disappear","Play","Stain","Take/Get","Want","Watch/See","Choose","Return/Normal","Meet","Break","Awake","Shake","Attack/Fight","Run","Fix","Hair","Mouth","Locals","(Under)World","Problem","Head","Ear","Time","Intelligence","Say","Someone (else)","Name","Sound","Shape","Face","Hand","Sit","Take/Bring","Stop","Leave","Hide","Put down","Use","Look for/Search","Know/Learn","Eat","Cover","Open","Knock/Hit","Help","Kill","Pick up","Need","Find","Understand"];
-  const otherian = ["DHF","DHFG","RKB","FLW","GBRN","YBU","YBUG","CWI","XIM","HZIY","RNU","XUEI","EACZ","YZG","SNQW","DSH","ZYIJ","JYLL","UUTH","QSNG","THGYS","ZYNAG","AEVDB","YUHA","XRFW","UNCQZ","OTRFV","PETKU","DOIR","MAYU","BMFJO","QSWCK","HKCDK","IWUS","YASQ","ELGXP","FNAMK","HVBF","KCJN","ZZTS","MBDO","FTYA","QYUC","NSXH","TEIW","EIUE","PZHC","KXEL","WHIN","UIWC","AONI","EHQX","PKYH","FJSB","IVXZ","YASM","PFJA","AEJY","HTQV","MMYN","TIYQ","PLZK","EYVF","WCXI","LFKN","TXAU","NCPV","GUWR","OYFE","BENA","HRON","EKWI","CVKU","OBWJ","KRYO","IRZD","NGRA","FTEB","EFUA","TAYF","AZLT","FTRY","MXRP","AMYU","KBUD","NJYZ","SHEG","NMGI","BQAZ","KDYH","DHBZ","OAIX","TROW","EIQJ","CUPV","NMGK","HJUS","PLXI","IVGW","CYQM","RFWD","HJKL","LGSU","HMWI","XVJP","ACTB","QGXN","FTHY","IRFY","DZMG","DCUT","NRVI","GOLB","ICLS","OGNW","HAUI","SMDW","XZHA","JSCK","TWBL"];
-  document.getElementById("eng").value = english[0];
-  document.getElementById("oth").value = otherian[0];
-  
-  class Otherian extends HTMLParagraphElement {
-    constructor() {
-      super();
-    }
-  // Element functionality written in here
-  }
-  customElements.define("oth", Otherian, { extends: "p" });
 
-  const eng = document.createElement("p");
-  const node = document.createTextNode(english[0]);
-  eng.appendChild(node);
 
-  const oth = document.createElement("oth");
-  const node = document.createTextNode(otherian[0]);
-  oth.appendChild(node);
-
-  const tr = document.createElement("tr");
-  tr.appendChild(eng);
-  tr.appendChild(oth);
-
-  const element = document.getElementById("results");
-  element.appendChild(tr);
-  
-</script>
-  <style>
-    @font-face {
-      font-family: Homicipher;
-      src: url("../../homicipher-translator/Homicipher Monster.ttf") format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-    oth {
-         font-family: Homicipher
-      }
-  </style>
 <body>
   <h1>Translator</h1>
+
+  <input id="input" oninput="updateResults()"></input>
+
+  <table id="keyboard">
+
+  </table>
   
-  <table id="results">
-    
+  <table id="results" style="width: 80%">
+    <colgroup>
+       <col span="1" style="width: 50%;">
+       <col span="1" style="width: 50%;">
+    </colgroup>
+    <tbody id="results-body"></tbody>
   </table>
 </body>
 
+
+<script >
+    const english = ["Me", "My", "This (thing)", "What", "Be/Exist", "You", "Your", "This (place)", "Why", "Is there", "Them", "Their", "May/can", "Where", "Is not there", "Us", "Another", "Cannot", "Not", "Elsewhere", "Hello", "I see", "Whats wrong", "Before", "Should", "Goodbye", "I gotcha", "Goodnight", "Again", "Want to", "Thank you", "Okie dokie", "There (pat)", "Maybe", "Want (you) to", "Sorry", "Disappointed", "Together", "Able to", "Lets (invitation)", "Do(ing)", "Go", "Wait", "Return", "Appear", "Stand", "Come", "Lost", "Give", "Carry", "Research", "Teach", "Leave", "Enter", "Sleep/Rest", "Drop", "Cutting", "Touch", "Take care of", "Worry", "Dead", "Human(?)", "Language", "Method/How", "Body", "Eye", "Move", "Follow", "Pass", "Change", "Disappear", "Play", "Stain", "Take/Get", "Want", "Watch/See", "Choose", "Return/Normal", "Meet", "Break", "Awake", "Shake", "Attack/Fight", "Run", "Fix", "Hair", "Mouth", "Locals", "(Under)World", "Problem", "Head", "Ear", "Time", "Intelligence", "Say", "Someone (else)", "Name", "Sound", "Shape", "Face", "Hand", "Sit", "Take/Bring", "Stop", "Leave", "Hide", "Put down", "Use", "Look for/Search", "Know/Learn", "Eat", "Cover", "Open", "Knock/Hit", "Help", "Kill", "Pick up", "Need", "Find", "Understand"];
+    const otherian = ["DHF", "DHFG", "RKB", "FLW", "GBRN", "YBU", "YBUG", "CWI", "XIM", "HZIY", "RNU", "XUEI", "EACZ", "YZG", "SNQW", "DSH", "ZYIJ", "JYLL", "UUTH", "QSNG", "THGYS", "ZYNAG", "AEVDB", "YUHA", "XRFW", "UNCQZ", "OTRFV", "PETKU", "DOIR", "MAYU", "BMFJO", "QSWCK", "HKCDK", "IWUS", "YASQ", "ELGXP", "FNAMK", "HVBF", "KCJN", "ZZTS", "MBDO", "FTYA", "QYUC", "NSXH", "TEIW", "EIUE", "PZHC", "KXEL", "WHIN", "UIWC", "AONI", "EHQX", "PKYH", "FJSB", "IVXZ", "YASM", "PFJA", "AEJY", "HTQV", "MMYN", "TIYQ", "PLZK", "EYVF", "WCXI", "LFKN", "TXAU", "NCPV", "GUWR", "OYFE", "BENA", "HRON", "EKWI", "CVKU", "OBWJ", "KRYO", "IRZD", "NGRA", "FTEB", "EFUA", "TAYF", "AZLT", "FTRY", "MXRP", "AMYU", "KBUD", "NJYZ", "SHEG", "NMGI", "BQAZ", "KDYH", "DHBZ", "OAIX", "TROW", "EIQJ", "CUPV", "NMGK", "HJUS", "PLXI", "IVGW", "CYQM", "RFWD", "HJKL", "LGSU", "HMWI", "XVJP", "ACTB", "QGXN", "FTHY", "IRFY", "DZMG", "DCUT", "NRVI", "GOLB", "ICLS", "OGNW", "HAUI", "SMDW", "XZHA", "JSCK", "TWBL"];
+
+
+    class Otherian extends HTMLParagraphElement {
+        constructor() {
+            super();
+        }
+        // Element functionality written in here
+    }
+    customElements.define("other-text", Otherian, { extends: "p" });
+
+    function updateResults() {
+        const input = document.getElementById("input");
+        const inputval = input.value;
+        results.innerHTML = "";
+        for (var i = 0; i < otherian.length; i++) {
+            if (otherian[i].startsWith(inputval)) {
+                const eng = document.createElement("td");
+                const node = document.createTextNode(english[i]);
+                eng.appendChild(node);
+
+                const oth = document.createElement("td");
+                const node2 = document.createTextNode(otherian[i]);
+                oth.appendChild(node2);
+
+                const results_tr = document.createElement("tr");
+                results_tr.appendChild(eng);
+                results_tr.appendChild(oth);
+
+
+                results.appendChild(results_tr);
+            }
+        }
+
+    };
+
+    const letters = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    const keyboard = document.getElementById("keyboard");
+    const results = document.getElementById("results-body");
+    const input = document.getElementById("input");
+    for (var i = 0;i<4;i++) {
+        const tr = document.createElement("tr");
+        for (var j = i*7; j < (i+1)*7; j++) {
+            if (j === 26) {
+                const idx = "DELETE";
+                const key = document.createElement("td");
+                const btn = document.createElement("button");
+                btn.id = idx;
+                btn.onclick = function () { input.value =input.value.substring(0,input.value.length-1); updateResults(); };
+                const node = document.createTextNode("⌫");
+                btn.appendChild(node);
+                key.appendChild(btn);
+                tr.appendChild(key);
+                break;
+            }
+            const idx = letters.substring(j, j + 1);
+            const key = document.createElement("td");
+            const btn = document.createElement("button");
+            btn.id = idx;
+            btn.onclick = function () { input.value += this.id; updateResults(); };
+            const node = document.createTextNode(idx);
+            btn.appendChild(node);
+            key.appendChild(btn);
+            tr.appendChild(key);
+        }
+        keyboard.appendChild(tr);
+    }
+
+
+    ///../../homicipher-translator/
+
+</script>
+
+
+<style>
+    @font-face {
+        font-family: Homicipher;
+        src: url("/../../homicipher-translator/Homicipher Monster.ttf") format('truetype'); 
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    oth,button,input {
+        font-family: Homicipher;
+        font-size:30px
+    }
+
+    #DELETE {
+        font-family:Arial;
+        font-size:23px
+    }
+    td:nth-child(even) {
+        font-family: Homicipher
+    }
+    table{
+        font-size:20px
+    }
+</style>
 </html>
