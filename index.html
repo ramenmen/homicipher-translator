@@ -10,7 +10,7 @@
 
   </table>
   
-  <table id="results" style="width: 80%">
+  <table id="results" style="width: 40%">
     <colgroup>
        <col span="1" style="width: 50%;">
        <col span="1" style="width: 50%;">
@@ -58,11 +58,12 @@
         }
 
     };
-    updateResults();
+    
     const letters = "QWERTYUIOPASDFGHJKLZXCVBNM";
     const keyboard = document.getElementById("keyboard");
     const results = document.getElementById("results-body");
     const input = document.getElementById("input");
+    updateResults();
     for (var i = 0;i<4;i++) {
         const tr = document.createElement("tr");
         for (var j = i*7; j < (i+1)*7; j++) {
